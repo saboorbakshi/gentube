@@ -26,11 +26,11 @@ function CategoryTag({
     <button
       onClick={onClick}
       className={`
-        px-3 py-1 text-sm rounded-full whitespace-nowrap transition-colors border font-medium
+        px-2.5 py-1 text-base rounded-full whitespace-nowrap transition-colors border
         ${isFirst ? 'ml-4' : ''}
         ${isActive 
-          ? "bg-zinc-100 dark:bg-zinc-800 border-transparent" 
-          : "bg-transparent border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+          ? "bg-[#222222] border-transparent" 
+          : "bg-transparent border-[#222222]"
         }
       `}
     >
@@ -40,11 +40,13 @@ function CategoryTag({
 }
 
 export default function Home() {
-  const [activeCategory, setActiveCategory] = useState("For You");
+  const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex h-[844px] w-[390px] flex-col items-center bg-white dark:bg-black sm:items-start py-4">
+      <main className="flex max-h-screen h-[844px] w-[390px] flex-col items-center bg-black sm:items-start pt-4">
+        <div className="flex grow">
+
+        </div>
         <div className="flex w-full gap-2 overflow-x-auto pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {CATEGORIES.map((category, index) => (
             <CategoryTag
@@ -59,6 +61,5 @@ export default function Home() {
           <div className="min-w-[16px]" />
         </div>
       </main>
-    </div>
   );
 }
