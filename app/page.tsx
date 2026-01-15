@@ -1,6 +1,7 @@
 "use client";
 
-import { Bell, Menu, Settings2, Box, Trash2, Heart, RefreshCcw, Play, Shuffle } from 'lucide-react';
+import Image from 'next/image';
+import { Bell, Menu, Settings2, Box, Forward, Heart, RefreshCcw, Play, Shuffle } from 'lucide-react';
 import { useState } from "react";
 import {
   Drawer,
@@ -67,7 +68,7 @@ export default function Home() {
   return (
       <main className="flex h-[100dvh] w-full flex-col items-center bg-white gap-2">
         <div className="w-full px-4 flex justify-between">
-          <img src="gentube.svg" className="h-8 w-8"></img>
+          <div className="h-8 w-8"></div>
           <div className="flex gap-2">
             <div className="h-8 w-8 rounded-full flex items-center justify-center border">
               <Bell size={16} />
@@ -85,32 +86,32 @@ export default function Home() {
               className="h-full w-full object-cover rounded-lg"
             />
             <div className='absolute top-2 right-2 rounded-full flex gap-2 items-center justify-center'>
-              <div className="h-8 w-8 rounded-full flex items-center justify-center bg-black/60">
-                <Trash2 size={16} color="white" />
+              <div className="h-9 w-9 rounded-full flex items-center justify-center bg-black/50">
+                <Image src="thumb-up.svg" alt='thumb up' width={18} height={18}/>
               </div>
-              <div className="h-8 w-8 rounded-full flex items-center justify-center bg-black/60">
-                <Settings2 size={16} color="white" />
+              <div className="h-9 w-9 rounded-full flex items-center justify-center bg-black/50">
+                <Image src="thumb-down.svg" alt='thumb up' width={18} height={18}/>
               </div>
             </div>
 
             <div className='absolute bottom-2 right-2 rounded-full flex flex-col gap-2 items-center justify-center'>
-              <div className="h-8 w-8 rounded-full flex items-center justify-center bg-black/60">
-                <RefreshCcw size={16} color="white" />
+              <div className="h-9 w-9 rounded-full flex items-center justify-center bg-black/50">
+                <RefreshCcw size={18} color="white" />
               </div>
-              <div className="h-8 w-8 rounded-full flex items-center justify-center bg-black/60">
-                <Shuffle size={16} color="white" />
+              <div className="h-9 w-9 rounded-full flex items-center justify-center bg-black/50">
+                <Shuffle size={18} color="white" />
               </div>
-              <div className="h-8 w-8 rounded-full flex items-center justify-center bg-black/60">
-                <Play size={16} color="white" />
+              <div className="h-9 w-9 rounded-full flex items-center justify-center bg-black/50">
+                <Play size={18} color="white" />
               </div>
             </div>
 
             <div className='absolute bottom-2 left-2 rounded-full flex gap-2 items-center justify-center'>
-              <div className="h-8 w-8 rounded-full flex items-center justify-center bg-black/60">
-                <Heart size={16} color="white" />
+              <div className="h-9 w-9 rounded-full flex items-center justify-center bg-black/50">
+                <Heart size={18} color="white" />
               </div>
-              <div className="h-8 w-8 rounded-full flex items-center justify-center bg-black/60">
-                <Settings2 size={16} color="white" />
+              <div className="h-9 w-9 rounded-full flex items-center justify-center bg-black/50">
+                <Forward size={18} color="white" />
               </div>
             </div>
           </div>
@@ -123,14 +124,14 @@ export default function Home() {
               key={index}
               src={image} 
               onClick={() => setSelectedImageIndex(index)}
-              className={`h-full object-cover rounded-sm aspect-square cursor-pointer ${
-                selectedImageIndex === index ? 'p-[1px] border-2 border-black' : ''
+              className={`h-full object-cover rounded-sm aspect-square cursor-pointer opacity-90 ${
+                selectedImageIndex === index ? 'p-[1px] border-2 border-black opacity-100' : ''
               }`}
             />
           ))}
         </div>
 
-        <div className="w-full flex gap-2 px-4 pt-2">
+        <div className="w-full flex gap-2 px-4">
           <div className="relative cursor-pointer" onClick={() => setIsDrawerOpen(true)}>
             <div className="h-12 w-12 rounded-full bg-black shrink-0 flex items-center justify-center">
               <Box size={22} color='white'/>
@@ -140,7 +141,7 @@ export default function Home() {
             </div>
           </div>
           <div className="h-12 bg-[#f1f1f1] p-2 flex grow rounded-full items-center min-w-0">
-            <p className="flex-1 truncate px-2 font-medium">Two dragons in battle among some</p>
+            <p className="flex-1 truncate px-2">Two dragons in battle among warriors rocky mountain</p>
             <div className="h-8 w-8 rounded-full flex items-center justify-center border shrink-0">
               <Settings2 size={16} />
             </div>
@@ -164,15 +165,7 @@ export default function Home() {
                 {/* Spacer for right side padding in scroll */}
                 <div className="min-w-[16px]" />
               </div>
-              <DrawerHeader>
-                <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                <DrawerDescription>This action cannot be undone.</DrawerDescription>
-              </DrawerHeader>
-              <DrawerFooter>
-                <DrawerClose>
-                  <div>Close</div>
-                </DrawerClose>
-              </DrawerFooter>
+              <div className='w-full h-[1px] bg-[#E0E0E0]'></div>
             </DrawerContent>
           </Drawer>
       </main>
