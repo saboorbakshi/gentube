@@ -23,7 +23,7 @@ function CategoryTagLine({
     <button
       onClick={onClick}
       className={`
-        flex items-center justify-center mx-2 pb-2 whitespace-nowrap font-medium border-b border-b-2
+        flex items-center justify-center gap-1 mx-2 pb-2 whitespace-nowrap font-medium border-b border-b-2
         ${isFirst ? 'ml-4' : ''}
         ${isActive
           ? "border-black"
