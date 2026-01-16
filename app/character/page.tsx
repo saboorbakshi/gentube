@@ -1,12 +1,7 @@
 "use client";
 
-import { Bell, Menu, Plus, Heart, RefreshCcw, Search } from 'lucide-react';
+import { Bell, Menu, Heart } from 'lucide-react';
 import { useState, useEffect } from "react";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerOverlay,
-} from "@/components/ui/drawer"
 import {
   Carousel,
   CarouselApi,
@@ -32,11 +27,11 @@ function FeatureTag({
     <button
       onClick={onClick}
       className={`
-        flex items-center justify-center gap-1 mx-2 pb-2 text-base whitespace-nowrap font-medium border-b border-b-2
+        flex items-center justify-center text-base whitespace-nowrap font-medium px-2.5 py-1 rounded-full
         ${isFirst ? 'ml-4' : ''}
         ${isActive
-          ? "border-black"
-          : "border-transparent opacity-50"
+          ? "bg-[#F1F1F1]"
+          : "bg-transparent opacity-50"
         }
       `}
     >
@@ -141,17 +136,17 @@ export default function Character() {
           <CarouselNext className="right-2" />
         </Carousel>
 
-        <div className="absolute bottom-2 right-2 px-3 h-8 flex items-center justify-center rounded-full bg-black/50">
-          <p className="text-sm font-medium text-white">
+        <div className="absolute bottom-2 right-2 px-2 h-6 flex items-center justify-center rounded-sm bg-black/70">
+          <p className="text-xs font-semibold text-white">
             {selectedImageIndex + 1}/{IMAGES.length}
           </p>
         </div>
       </div>
 
-      <div className="my-6 w-full">
+      <div className="my-4 w-full">
         <div
           className="
-      flex flex-nowrap w-full gap-2
+      flex flex-nowrap w-full gap-1
       overflow-x-auto overflow-y-hidden
       [scrollbar-width:none] [-ms-overflow-style:none]
       [&::-webkit-scrollbar]:hidden
@@ -168,7 +163,6 @@ export default function Character() {
           ))}
           <div className="min-w-4" />
         </div>
-        <div className="w-full h-[1px] bg-[#E0E0E0]" />
       </div>
 
     </main>

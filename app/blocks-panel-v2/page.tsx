@@ -3,12 +3,7 @@
 import Image from 'next/image';
 import { Bell, Menu, Settings2, Plus, Forward, Heart, RefreshCcw, Play, Shuffle, Search } from 'lucide-react';
 import { useState, useEffect } from "react";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerTitle,
-  DrawerTrigger
-} from "@/components/ui/drawer"
+import { Drawer, DrawerContent } from "@/components/ui/drawer"
 import { CATEGORIES } from '../../data';
 
 function CategoryTagLine({
@@ -28,7 +23,7 @@ function CategoryTagLine({
     <button
       onClick={onClick}
       className={`
-        flex items-center justify-center gap-1 mx-2 pb-2 text-base whitespace-nowrap font-medium border-b border-b-2
+        flex items-center justify-center mx-2 pb-2 text-base whitespace-nowrap font-medium border-b border-b-2
         ${isFirst ? 'ml-4' : ''}
         ${isActive
           ? "border-black"
@@ -247,7 +242,7 @@ export default function BlocksPanelV2() {
       <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen} >
         <DrawerContent className="h-[60dvh]">
           <div className='mb-4'>
-            <div className="flex w-full gap-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden shrink-0">
+            <div className="flex w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden shrink-0">
               {CATEGORIES.map((category, index) => (
                 <CategoryTagLine
                   key={category.label}
@@ -266,7 +261,7 @@ export default function BlocksPanelV2() {
           {
             subCategories.length > 0 && (
               <div>
-                <div className="flex w-full gap-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden shrink-0">
+                <div className="flex w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden shrink-0">
                   {subCategories.map((subCategory, index) => (
                     <CategoryTagLine
                       key={subCategory.label}
