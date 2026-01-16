@@ -125,7 +125,7 @@ export default function Character() {
         </div>
       </div>
 
-      <div className="relative w-3/5 aspect-square rounded-2xl overflow-hidden mb-6">
+      <div className="relative h-1/3 aspect-square rounded-2xl overflow-hidden mb-6">
         <Carousel setApi={setApi} className="h-full w-full">
           <CarouselContent className="h-full">
             {IMAGES.map((image, index) => (
