@@ -27,21 +27,15 @@ function FeatureTag({
     <button
       onClick={onClick}
       className={`
-        flex items-center justify-center text-sm font-medium whitespace-nowrap font-medium px-3 py-2 rounded-full border
+        flex items-center justify-center mx-2 pb-2 whitespace-nowrap font-medium border-b border-b-2
         ${isFirst ? 'ml-4' : ''}
         ${isActive
-          ? "bg-[#F1F1F1] border-[#F1F1F1]"
-          : "bg-transparent opacity-40"
+          ? "border-black"
+          : "border-transparent opacity-50"
         }
       `}
     >
       <p className='text-sm'>{label}</p>
-      {/* {count != null && (
-        <div className='py-0.5 px-2 bg-[#f1f1f1] rounded-full text-[13px] flex items-center justify-center'>
-          <p>{count}</p>
-        </div>
-      )
-      } */}
     </button>
   );
 }
@@ -152,7 +146,7 @@ export default function Character() {
       <div className="w-full">
         <div
           className="
-      flex flex-nowrap w-full gap-1 pb-1
+      flex flex-nowrap w-full gap-1
       overflow-x-auto overflow-y-hidden
       [scrollbar-width:none] [-ms-overflow-style:none]
       [&::-webkit-scrollbar]:hidden
@@ -169,10 +163,11 @@ export default function Character() {
           ))}
           <div className="min-w-4" />
         </div>
+        <div className='w-full h-[1px] bg-[#E0E0E0]'></div>
       </div>
 
       <div
-        className="w-full px-4 pt-3 flex-1 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden "
+        className="w-full p-4 flex-1 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden "
       >
         {activeFeatureData?.options ? (
           <div className="grid grid-cols-3 gap-4 pb-16">
