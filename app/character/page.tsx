@@ -175,7 +175,7 @@ export default function Character() {
         className="w-full px-4 pt-3 flex-1 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden "
       >
         {activeFeatureData?.options ? (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4 pb-16">
             {activeFeatureData.options.map((option) => {
               const selectedForThisFeature = selectedOptions[activeFeature] ?? null
 
