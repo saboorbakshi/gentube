@@ -23,7 +23,7 @@ function CategoryTagLine({
     <button
       onClick={onClick}
       className={`
-        flex items-center justify-center mx-2 pb-2 text-base whitespace-nowrap font-medium border-b border-b-2
+        flex items-center justify-center mx-2 pb-2 whitespace-nowrap font-medium border-b border-b-2
         ${isFirst ? 'ml-4' : ''}
         ${isActive
           ? "border-black"
@@ -180,10 +180,10 @@ export default function BlocksPanelV2() {
           />
           <div className='absolute top-2 right-2 rounded-full flex gap-2 items-center justify-center'>
             <div className="h-9 w-9 rounded-full flex items-center justify-center bg-black/50">
-              <Image src="thumb-up.svg" alt='thumb up' width={18} height={18} />
+              <Image src="icons/thumb-up.svg" alt='thumb up' width={18} height={18} />
             </div>
             <div className="h-9 w-9 rounded-full flex items-center justify-center bg-black/50">
-              <Image src="thumb-down.svg" alt='thumb up' width={18} height={18} />
+              <Image src="icons/thumb-down.svg" alt='thumb up' width={18} height={18} />
             </div>
           </div>
 

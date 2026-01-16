@@ -10,7 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { CATEGORIES, FEATURES } from '../../data';
+import { FEATURES } from '../../data';
 
 function FeatureTag({
   label,
@@ -27,11 +27,11 @@ function FeatureTag({
     <button
       onClick={onClick}
       className={`
-        flex items-center justify-center text-base whitespace-nowrap font-medium px-2.5 py-1 rounded-full
+        flex items-center justify-center text-sm font-medium whitespace-nowrap font-medium px-3 py-2 rounded-full border
         ${isFirst ? 'ml-4' : ''}
         ${isActive
-          ? "bg-[#F1F1F1]"
-          : "bg-transparent opacity-50"
+          ? "bg-[#F1F1F1] border-[#F1F1F1]"
+          : "bg-transparent opacity-40"
         }
       `}
     >
@@ -46,44 +46,45 @@ function FeatureTag({
   );
 }
 
-function BlockTag({
+function ImageOption({
   label,
-  isFavorite = false,
-  onToggleFavorite,
-  isSelected = false,
-  onToggleSelect,
+  src,
+  isSelected,
+  onSelect,
 }: {
-  label: string;
-  isFavorite?: boolean;
-  onToggleFavorite: () => void;
-  isSelected?: boolean;
-  onToggleSelect: () => void;
+  label: string
+  src: string
+  isSelected: boolean
+  onSelect: () => void
 }) {
   return (
     <button
-      onClick={onToggleSelect}
-      className={`
-        relative px-3 py-2 text-[13px] font-medium rounded-full w-fit
-        ${isSelected ? 'bg-black text-white' : 'bg-[#F1F1F1]'}
-      `}
+      onClick={onSelect}
+      className="flex flex-col items-start gap-2 w-full"
     >
-      {label}
       <div
-        onClick={(e) => {
-          e.stopPropagation();
-          onToggleFavorite();
-        }}
-        className="absolute -top-2 -right-1 cursor-pointer"
+        className={`
+          w-full aspect-square rounded-full overflow-hidden bg-[#F1F1F1]
+          ${isSelected ? 'outline-3 outline-offset-2 outline-black' : ''}
+        `}
       >
-        <Heart
-          size={22}
-          color="white"
-          strokeWidth={2}
-          fill={isFavorite ? 'red' : '#AAA'}
+        <img
+          src={src}
+          alt={label}
+          className="w-full h-full object-cover"
         />
       </div>
+
+      <p
+        className={`
+          text-sm font-medium w-full
+          ${isSelected ? 'opacity-100' : 'opacity-50'}
+        `}
+      >
+        {label}
+      </p>
     </button>
-  );
+  )
 }
 
 const IMAGES = [
@@ -92,9 +93,14 @@ const IMAGES = [
 ];
 
 export default function Character() {
-  const [activeFeature, setActiveFeature] = useState(CATEGORIES[0].label)
+  const [activeFeature, setActiveFeature] = useState(FEATURES[0].label)
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string | null>>({})
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [api, setApi] = useState<CarouselApi>()
+
+  const activeFeatureData = FEATURES.find(
+    (feature) => feature.label === activeFeature
+  )
 
   useEffect(() => {
     if (!api) return
@@ -106,8 +112,8 @@ export default function Character() {
 
 
   return (
-    <main className="flex h-[100dvh] w-full flex-col items-center bg-white gap-2 overflow-x-hidden">
-      <div className="w-full px-4 flex justify-between">
+    <main className="flex h-[100dvh] w-full flex-col items-center bg-white overflow-x-hidden">
+      <div className="w-full px-4 flex justify-between mb-2">
         <div className="h-9 w-9"></div>
         <div className="flex gap-2">
           <div className="h-9 w-9 rounded-full flex items-center justify-center border">
@@ -119,7 +125,7 @@ export default function Character() {
         </div>
       </div>
 
-      <div className="relative w-3/5 aspect-square rounded-xl overflow-hidden">
+      <div className="relative w-3/5 aspect-square rounded-2xl overflow-hidden mb-6">
         <Carousel setApi={setApi} className="h-full w-full">
           <CarouselContent className="h-full">
             {IMAGES.map((image, index) => (
@@ -136,17 +142,17 @@ export default function Character() {
           <CarouselNext className="right-2" />
         </Carousel>
 
-        <div className="absolute bottom-2 right-2 px-2 h-6 flex items-center justify-center rounded-sm bg-black/70">
+        <div className="absolute bottom-2 right-2 px-2 h-6 flex items-center justify-center rounded-full bg-black/70">
           <p className="text-xs font-semibold text-white">
             {selectedImageIndex + 1}/{IMAGES.length}
           </p>
         </div>
       </div>
 
-      <div className="my-4 w-full">
+      <div className="w-full">
         <div
           className="
-      flex flex-nowrap w-full gap-1
+      flex flex-nowrap w-full gap-1 pb-1
       overflow-x-auto overflow-y-hidden
       [scrollbar-width:none] [-ms-overflow-style:none]
       [&::-webkit-scrollbar]:hidden
@@ -165,6 +171,52 @@ export default function Character() {
         </div>
       </div>
 
+      <div
+        className="w-full px-4 pt-3 flex-1 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden "
+      >
+        {activeFeatureData?.options ? (
+          <div className="grid grid-cols-3 gap-4">
+            {activeFeatureData.options.map((option) => {
+              const selectedForThisFeature = selectedOptions[activeFeature] ?? null
+
+              return (
+                <ImageOption
+                  key={option.label}
+                  label={option.label}
+                  src={option.src}
+                  isSelected={selectedForThisFeature === option.label}
+                  onSelect={() =>
+                    setSelectedOptions((prev) => ({
+                      ...prev,
+                      [activeFeature]:
+                        prev[activeFeature] === option.label ? null : option.label,
+                    }))
+                  }
+                />
+              )
+            })}
+          </div>
+        ) : (
+          <div className='flex flex-col gap-2'>
+            <div className='border rounded-md px-4 py-3 flex flex-col gap-2'>
+              <p className="text-base opacity-50">
+                {activeFeatureData?.placeholder}
+              </p>
+            </div>
+            {
+              activeFeatureData?.limit && (
+                <p className='w-full text-sm font-medium opacity-50 text-right'>0/{activeFeatureData.limit} characters</p>
+              )
+            }
+          </div>
+        )}
+      </div>
+      <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white via-white/65 to-transparent pointer-events-none" />
+      <div className="fixed bottom-0 w-full px-4 flex justify-center">
+        <button className="bg-black text-white rounded-full font-medium text-base h-12 px-6">
+          Save Character
+        </button>
+      </div>
     </main>
   );
 }
