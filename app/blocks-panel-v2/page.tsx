@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import { Bell, Menu, Settings2, Plus, Forward, Heart, RefreshCcw, Play, Shuffle } from 'lucide-react';
+import { Bell, Menu, Settings2, Plus, Forward, Heart, RefreshCcw, Play, Shuffle, Search } from 'lucide-react';
 import { useState, useEffect } from "react";
 import {
   Drawer,
@@ -157,22 +157,22 @@ export default function BlocksPanelV2() {
   return (
     <main className="flex h-[100dvh] w-full flex-col items-center bg-white gap-2">
       <div className="w-full px-4 flex justify-between">
-        <div className="h-8 w-8"></div>
+        <div className="h-9 w-9"></div>
         <div className="flex gap-2">
-          <div className="h-8 w-8 rounded-full flex items-center justify-center border">
-            <Bell size={16} />
+          <div className="h-9 w-9 rounded-full flex items-center justify-center border">
+            <Bell size={18} />
           </div>
-          <div className="h-8 w-8 rounded-full flex items-center justify-center border">
-            <Menu size={16} />
+          <div className="h-9 w-9 rounded-full flex items-center justify-center border">
+            <Menu size={18} />
           </div>
         </div>
       </div>
 
-      <div className="w-full flex gap-2 px-4">
-        <div className="h-12 bg-[#f1f1f1] p-2 flex grow rounded-full items-center min-w-0">
+      <div className="w-full px-4">
+        <div className="h-12 bg-[#f1f1f1] p-[6px] flex grow rounded-full items-center min-w-0">
           <p className="flex-1 truncate px-2">Two dragons in battle among warriors rocky mountain</p>
-          <div className="h-8 w-8 rounded-full flex items-center justify-center border shrink-0">
-            <Settings2 size={16} />
+          <div className="h-9 w-9 rounded-full flex items-center justify-center border shrink-0">
+            <Settings2 size={18} />
           </div>
         </div>
       </div>
@@ -324,12 +324,15 @@ export default function BlocksPanelV2() {
           </div>
           <div className='w-full h-[1px] bg-[#E0E0E0]'></div>
           <div className='pt-4 px-4 flex gap-2'>
-            <div className='border flex-2/3 grow h-9 px-2 rounded-sm flex items-center text-sm'>
-              <p className='opacity-60'>Search {activeCategory} Blocks... </p>
+            <div className='border grow h-9 px-2 flex items-center gap-2 rounded-full'>
+              <Search size={18} className='opacity-40' />
+              <p className='text-sm opacity-60'>Search {activeCategory} Blocks... </p>
             </div>
-            <div className='border flex-1/3 grow h-9 px-2 rounded-sm flex gap-1.5 items-center text-sm'>
-              <RefreshCcw size={16}></RefreshCcw>
-              <p>Randomize</p>
+            <div className='border h-9 w-9 flex justify-center items-center rounded-full'>
+              <RefreshCcw size={18} />
+            </div>
+            <div className='border h-9 w-9 flex justify-center items-center rounded-full'>
+              <Plus size={18} />
             </div>
           </div>
         </DrawerContent>
